@@ -1,50 +1,30 @@
-
 "use client";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormData } from "@/app/page";
+import { AddressDetailsFormProps } from "./AddressDetailsFormProps";
+import { addressDetailsSchema } from "./addressDetailsSchema";
 
-const accountSetupSchema = z
-  .object({
-    username: z
-      .string()
-      .min(1, "Username is required")
-      .min(4, "Username must be at least 4 characters"),
-    password: z
-      .string()
-      .min(1, "Password is required")
-      .min(6, "Password must be at least 6 characters"),
-    confirmPassword: z.string().min(1, "Please confirm your password"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  });
 
-type AccountSetupFormProps = {
-  formData: FormData;
-  updateFormData: (data: Partial<FormData>) => void;
-  onNext: () => void;
-  onPrevious: () => void;
-};
 
-export default function AccountSetupForm({
+
+export default function AddressDetailsForm({
   formData,
   updateFormData,
   onNext,
   onPrevious,
-}: AccountSetupFormProps) {
+}: AddressDetailsFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(accountSetupSchema),
+    resolver: zodResolver(addressDetailsSchema),
     defaultValues: {
-      username: formData.username,
-      password: formData.password,
-      confirmPassword: formData.confirmPassword,
+      streetAddress: formData.streetAddress,
+      city: formData.city,
+      zipCode: formData.zipCode,
     },
   });
 
@@ -55,51 +35,51 @@ export default function AccountSetupForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <h2 className="text-xl font-semibold mb-4">Account Setup</h2>
+      <h2 className="text-xl font-semibold mb-4">Address Details</h2>
       
       <div className="space-y-4">
         <div>
-          <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-            Username
+          <label htmlFor="streetAddress" className="block text-sm font-medium text-gray-700">
+            Street Address
           </label>
           <input
             type="text"
-            id="username"
-            {...register("username")}
+            id="streetAddress"
+            {...register("streetAddress")}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
-          {errors.username && (
-            <p className="mt-1 text-sm text-red-600">{errors.username.message}</p>
+          {errors.streetAddress && (
+            <p className="mt-1 text-sm text-red-600">{errors.streetAddress.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-            Password
+          <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+            City
           </label>
           <input
-            type="password"
-            id="password"
-            {...register("password")}
+            type="text"
+            id="city"
+            {...register("city")}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
-          {errors.password && (
-            <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+          {errors.city && (
+            <p className="mt-1 text-sm text-red-600">{errors.city.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-            Confirm Password
+          <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700">
+            Zip Code
           </label>
           <input
-            type="password"
-            id="confirmPassword"
-            {...register("confirmPassword")}
+            type="text"
+            id="zipCode"
+            {...register("zipCode")}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
-          {errors.confirmPassword && (
-            <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
+          {errors.zipCode && (
+            <p className="mt-1 text-sm text-red-600">{errors.zipCode.message}</p>
           )}
         </div>
       </div>

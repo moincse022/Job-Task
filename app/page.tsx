@@ -1,9 +1,9 @@
 // app/page.tsx
 "use client";
-import AccountSetupForm from "@/Components/AccountSetupForm";
-import AddressDetailsForm from "@/Components/AddressDetailsForm";
-import FormSummary from "@/Components/FormSummary";
-import PersonalInfoForm from "@/Components/PersonalInfoForm";
+import AccountSetupForm from "@/Components/AccountSetupForm/AccountSetupForm";
+import AddressDetailsForm from "@/Components/AddressDetailsForm/AddressDetailsForm";
+import FormSummary from "@/Components/FormSummary/FormSummary";
+import PersonalInfoForm from "@/Components/PersonalInfoForm/PersonalInfoForm";
 import { useState } from "react";
 
 
