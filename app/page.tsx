@@ -5,6 +5,7 @@ import AddressDetailsForm from "@/Components/AddressDetailsForm/AddressDetailsFo
 import FormSummary from "@/Components/FormSummary/FormSummary";
 import PersonalInfoForm from "@/Components/PersonalInfoForm/PersonalInfoForm";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 
 
@@ -51,6 +52,7 @@ console.log(formData)
   const handleSubmit = () => {
     console.log("Form submitted:", formData);
     setIsSubmitted(true);
+    toast.success("Form submitted successfully!");
   };
 console.log(step)
   return (

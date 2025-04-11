@@ -1,12 +1,7 @@
 
-import { FormData } from "@/app/page";
+import { FormSummaryProps } from "./FormSummaryProps";
 
-type FormSummaryProps = {
-  formData: FormData;
-  onSubmit: () => void;
-  onPrevious: () => void;
-  isSubmitted: boolean;
-};
+
 
 export default function FormSummary({
   formData,
@@ -27,7 +22,7 @@ export default function FormSummary({
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-green-800">Form Submitted Successfully</h3>
+            
               <div className="mt-2 text-sm text-green-700">
                 <p>Thank you for submitting your information.</p>
               </div>
